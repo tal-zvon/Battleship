@@ -3,45 +3,35 @@ import random
 __author__ = 'tal'
 Grid_Size = 10
 PC_location = [random.randint(0, Grid_Size - 1), random.randint(0, Grid_Size - 1)]
-CHEATING = False  # Shows you what the computer grid looks like
+CHEATING = True  # Shows you what the computer grid looks like
 
 
 def draw_grids():
-    if CHEATING:
-        for y in reversed(range(0, Grid_Size)):
-            for x in range(0, Grid_Size):
-                if Player_Grid[x][y].already_tried:
-                    print 'X',
+    for y in reversed(range(0, Grid_Size)):
+        for x in range(0, Grid_Size):
+            if Player_Grid[x][y].already_tried:
+                print 'X',
+            else:
+                if Player_Grid[x][y].ship_here:
+                    print '-',
                 else:
-                    if Player_Grid[x][y].ship_here:
+                    print "O",
+
+        #Before we go on to the next line, print PCs line
+        print '               |               ',
+
+        for x2 in range(0, Grid_Size):
+            if Computer_Grid[x2][y].already_tried:
+                print 'X',
+            else:
+                if Computer_Grid[x2][y].ship_here:
+                    if CHEATING:
                         print '-',
                     else:
-                        print "O",
-
-            #Before we go on to the next line, print PCs line
-            print '               |               ',
-
-            for x2 in range(0, Grid_Size):
-                if Computer_Grid[x2][y].already_tried:
-                    print 'X',
+                        print 'O',
                 else:
-                    if Computer_Grid[x2][y].ship_here:
-                        print '-',
-                    else:
-                        print "O",
-            print ''
-    else:
-        for y in reversed(range(0, Grid_Size)):
-            for x in range(0, Grid_Size):
-                if Player_Grid[x][y].already_tried:
-                    print 'X',
-                else:
-                    if Player_Grid[x][y].ship_here:
-                        print '-',
-                    else:
-                        print "O",
-            print ''
-
+                    print "O",
+        print ''
 
 def place_ships():
     for i in range(P1_location[0], P1_location[0] + 4):

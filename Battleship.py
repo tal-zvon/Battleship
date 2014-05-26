@@ -3,7 +3,7 @@ import random
 __author__ = 'tal'
 Grid_Size = 10
 PC_location = [random.randint(0, Grid_Size - 1), random.randint(0, Grid_Size - 1)]
-CHEATING = True  # Shows you what the computer grid looks like
+CHEATING = False  # Shows you what the computer grid looks like
 
 
 def draw_grids():
@@ -21,17 +21,19 @@ def draw_grids():
         print '               |               ',
 
         for x2 in range(0, Grid_Size):
-            if Computer_Grid[x2][y].already_tried:
+            if Computer_Grid[x2][y].already_tried and Computer_Grid[x2][y].ship_here:
+                print '*',
+            elif Computer_Grid[x2][y].already_tried:
                 print 'X',
-            else:
-                if Computer_Grid[x2][y].ship_here:
-                    if CHEATING:
-                        print '-',
-                    else:
-                        print 'O',
+            elif Computer_Grid[x2][y].ship_here:
+                if CHEATING:
+                    print '-',
                 else:
-                    print "O",
+                    print 'O',
+            else:
+                print 'O',
         print ''
+
 
 def place_ships():
     for i in range(P1_location[0], P1_location[0] + 4):

@@ -8,7 +8,7 @@ CHEATING = False  # Shows you what the computer grid looks like
 
 def draw_grids():
     if CHEATING:
-        for y in range(0, Grid_Size):
+        for y in reversed(range(0, Grid_Size)):
             for x in range(0, Grid_Size):
                 if Player_Grid[x][y].already_tried:
                     print 'X',
@@ -31,7 +31,7 @@ def draw_grids():
                         print "O",
             print ''
     else:
-        for y in range(0, Grid_Size):
+        for y in reversed(range(0, Grid_Size)):
             for x in range(0, Grid_Size):
                 if Player_Grid[x][y].already_tried:
                     print 'X',
@@ -100,7 +100,7 @@ class Coordinate(object):
 Player_Grid = [[Coordinate(False, False) for i in range(10)] for j in range(10)]
 Computer_Grid = [[Coordinate(False, False) for i in range(10)] for j in range(10)]
 
-for y in range(0, Grid_Size):
+for y in reversed(range(0, Grid_Size)):
     for x in range(0, Grid_Size):
         print "(%d,%d)" % (x, y),
     print
@@ -120,13 +120,6 @@ PC_location = adjust_coord(PC_location)
 
 #Place ships on grid
 place_ships()
-
-#DEBUG - fire some shots
-#Player_Grid[0][0].already_tried = True
-#Player_Grid[2][5].already_tried = True
-#Player_Grid[9][2].already_tried = True
-#Player_Grid[6][4].already_tried = True
-#Player_Grid[1][8].already_tried = True
 
 #While loop
 while True:

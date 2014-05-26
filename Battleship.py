@@ -9,13 +9,14 @@ CHEATING = False  # Shows you what the computer grid looks like
 def draw_grids():
     for y in reversed(range(0, Grid_Size)):
         for x in range(0, Grid_Size):
-            if Player_Grid[x][y].already_tried:
+            if Player_Grid[x][y].already_tried and Player_Grid[x][y].ship_here:
+                print '*',
+            elif Player_Grid[x][y].already_tried:
                 print 'X',
+            elif Player_Grid[x][y].ship_here:
+                print '-',
             else:
-                if Player_Grid[x][y].ship_here:
-                    print '-',
-                else:
-                    print "O",
+                print 'O',
 
         #Before we go on to the next line, print PCs line
         print '               |               ',

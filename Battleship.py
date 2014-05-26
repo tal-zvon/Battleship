@@ -6,10 +6,27 @@ PC_location = [random.randint(0, Grid_Size - 1), random.randint(0, Grid_Size - 1
 CHEATING = False  # Shows you what the computer grid looks like
 
 
+def draw_x_axes():
+    print '  ',
+    print '-' * (Grid_Size * 2),
+    print '               |               ',
+    print '  ',
+    print '-' * (Grid_Size * 2)
+    print '   ',
+    for i in range(0, Grid_Size):
+        print i,
+    print '                               ',
+    print '   ',
+    for i in range(0, Grid_Size):
+        print i,
+
+
 def draw_grids():
     #This runs for every horizontal line in the grid
     for y in reversed(range(0, Grid_Size)):
 
+        print y,
+        print '|',
         #This prints the Player's grid
         for x in range(0, Grid_Size):
             if Player_Grid[x][y].already_tried and Player_Grid[x][y].ship_here:
@@ -24,6 +41,8 @@ def draw_grids():
         #The separator between the Player's grid and the Computer's grid
         print '               |               ',
 
+        print y,
+        print '|',
         #This prints the Computer's grid
         for x2 in range(0, Grid_Size):
             if Computer_Grid[x2][y].already_tried and Computer_Grid[x2][y].ship_here:
@@ -38,6 +57,8 @@ def draw_grids():
             else:
                 print 'O',
         print ''
+    #Drag X axes
+    draw_x_axes()
 
 
 def place_ships():

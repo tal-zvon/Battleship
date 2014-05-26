@@ -7,7 +7,10 @@ CHEATING = False  # Shows you what the computer grid looks like
 
 
 def draw_grids():
+    #This runs for every horizontal line in the grid
     for y in reversed(range(0, Grid_Size)):
+
+        #This prints the Player's grid
         for x in range(0, Grid_Size):
             if Player_Grid[x][y].already_tried and Player_Grid[x][y].ship_here:
                 print '*',
@@ -18,9 +21,10 @@ def draw_grids():
             else:
                 print 'O',
 
-        #Before we go on to the next line, print PCs line
+        #The separator between the Player's grid and the Computer's grid
         print '               |               ',
 
+        #This prints the Computer's grid
         for x2 in range(0, Grid_Size):
             if Computer_Grid[x2][y].already_tried and Computer_Grid[x2][y].ship_here:
                 print '*',

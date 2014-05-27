@@ -199,12 +199,18 @@ def convert_to_int(coordinates):
 def check_input(input_coord):
     """Check if input is valid"""
     #Check if list is of proper size:
-    if len(input_coord) != 2:
+    if len(input_coord) < 2:
+        print 'Improper input detected - too few variables!'
+        return False
+    elif len(input_coord) > 2:
         print 'Improper input detected - too many variables!'
         return False
 
     if input_coord[0] >= Grid_Size:
-        print 'Your x coordinate is out of bounds!'
+        if input_coord[1] >= Grid_Size:
+            print "Both your coordinates are out of bounds!"
+        else:
+            print 'Your x coordinate is out of bounds!'
         return False
 
     if input_coord[1] >= Grid_Size:

@@ -105,6 +105,8 @@ def draw_x_axes():
 
 
 def draw_grids():
+    #Draw graph labels
+    print '          Player                                                 Computer\n'
     #This runs for every horizontal line in the grid
     for y in reversed(range(0, Grid_Size)):
 
@@ -213,7 +215,7 @@ for y in reversed(range(0, Grid_Size)):
     print
 
 #print '\nPick a coordinate to place your ship: ',
-P1_location = raw_input("\nPick a coordinate to place your ship (ex: 1,4): ")
+P1_location = raw_input("\nThis is what the grid looks like.\nPick a coordinate to place your ship (ex: 1,4): ")
 P1_location = P1_location.replace("(", "")
 P1_location = P1_location.replace(")", "")
 

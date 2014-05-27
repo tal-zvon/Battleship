@@ -167,7 +167,7 @@ def convert_to_int(coordinates):
             coordinates[i] = int(coordinates[i])
         except ValueError:
             print "'%s' is not a number!" % coordinates[i]
-            exit(1)
+            return False
 
     return coordinates
 
@@ -221,6 +221,8 @@ P1_location = P1_location.replace(")", "")
 
 #Convert to int
 P1_location = convert_to_int(P1_location)
+if P1_location is False:
+    exit(1)
 
 #Check if input is valid
 check_input(P1_location)
@@ -248,6 +250,9 @@ while True:
 
     #Convert to int
     player_shot = convert_to_int(player_shot)
+    if player_shot is False:
+        raw_input("Press enter to continue.")
+        continue
 
     #Check if input is valid
     check_input(player_shot)

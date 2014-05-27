@@ -171,6 +171,8 @@ for y in reversed(range(0, Grid_Size)):
 
 #print '\nPick a coordinate to place your ship: ',
 P1_location = raw_input("\nPick a coordinate to place your ship (ex: 1,4): ")
+P1_location = P1_location.replace("(", "")
+P1_location = P1_location.replace(")", "")
 
 #Convert to int
 P1_location = convert_to_int(P1_location)
@@ -196,6 +198,8 @@ while True:
     #Player's turn
     print '\n'
     player_shot = raw_input("Where would you like to shoot? (ex: 1,4): ")
+    player_shot = player_shot.replace("(", "")
+    player_shot = player_shot.replace(")", "")
 
     #Convert to int
     player_shot = convert_to_int(player_shot)

@@ -9,6 +9,23 @@ PC_location = [random.randint(0, Grid_Size - 1), random.randint(0, Grid_Size - 1
 CHEATING = True  # Shows you what the computer grid looks like
 
 
+def player_message():
+    #Clear screen
+    os.system('clear')
+
+    #Draw Grids
+    draw_grids()
+
+    #Write message to screen what the shot was, and if it was a hit or miss
+    print '\n'
+    print 'You have shot (%d,%d).' % (player_shot[0], player_shot[1]),
+    if Computer_Grid[player_shot[0]][player_shot[1]].ship_here:
+        print "HIT!"
+    else:
+        print "MISS!"
+    raw_input("Press enter to continue.")
+
+
 def signal_handler(signal, frame):
     print "\n"
     print "You sank my battleship!"
@@ -22,6 +39,21 @@ def computer_turn():
         #Make sure the computer hasn't shot that spot before
         if not Player_Grid[rnd[0]][rnd[1]].already_tried:
             Player_Grid[rnd[0]][rnd[1]].already_tried = True
+
+            #Clear screen
+            os.system('clear')
+
+            #Draw Grids
+            draw_grids()
+
+            #Write message to screen what the shot was, and if it was a hit or miss
+            print '\n'
+            print 'Computer has shot (%d,%d).' % (rnd[0], rnd[1]),
+            if Player_Grid[rnd[0]][rnd[1]].ship_here:
+                print "HIT!"
+            else:
+                print "MISS!"
+            raw_input("Press enter to continue.")
             break
 
 
@@ -225,6 +257,8 @@ while True:
         continue
     else:
         Computer_Grid[player_shot[0]][player_shot[1]].already_tried = True
+        #Write message to screen to show what you shot, and if it was a hit or miss
+        player_message()
 
     #Check if anyone won
     check_win()

@@ -7,12 +7,12 @@ PC_location = [random.randint(0, Grid_Size - 1), random.randint(0, Grid_Size - 1
 CHEATING = True  # Shows you what the computer grid looks like
 
 
-def CheckWin():
+def check_win():
     #Check if player won
-    if (Player_Grid[P1_location[0]][P1_location[1]].already_tried == True and
-                Player_Grid[P1_location[0] + 1][P1_location[1]].already_tried == True and
-                Player_Grid[P1_location[0] + 2][P1_location[1]].already_tried == True and
-                Player_Grid[P1_location[0] + 3][P1_location[1]].already_tried == True):
+    if (Player_Grid[P1_location[0]][P1_location[1]].already_tried is True and
+                Player_Grid[P1_location[0] + 1][P1_location[1]].already_tried is True and
+                Player_Grid[P1_location[0] + 2][P1_location[1]].already_tried is True and
+                Player_Grid[P1_location[0] + 3][P1_location[1]].already_tried is True):
         #Show losing message
         print '\n'
         print '====================='
@@ -21,10 +21,10 @@ def CheckWin():
         exit(0)
 
     #Check if computer won
-    if (Computer_Grid[PC_location[0]][PC_location[1]].already_tried == True and
-                Computer_Grid[PC_location[0] + 1][PC_location[1]].already_tried == True and
-                Computer_Grid[PC_location[0] + 2][PC_location[1]].already_tried == True and
-                Computer_Grid[PC_location[0] + 3][PC_location[1]].already_tried == True):
+    if (Computer_Grid[PC_location[0]][PC_location[1]].already_tried is True and
+                Computer_Grid[PC_location[0] + 1][PC_location[1]].already_tried is True and
+                Computer_Grid[PC_location[0] + 2][PC_location[1]].already_tried is True and
+                Computer_Grid[PC_location[0] + 3][PC_location[1]].already_tried is True):
         #Clear screen
         os.system('clear')
 
@@ -202,7 +202,7 @@ while True:
         Computer_Grid[player_shot[0]][player_shot[1]].already_tried = True
 
     #Check if anyone won
-    CheckWin()
+    check_win()
 
     #Computer's turn
 

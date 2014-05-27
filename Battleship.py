@@ -6,7 +6,7 @@ import sys
 __author__ = 'tal'
 Grid_Size = 10
 PC_location = [random.randint(0, Grid_Size - 1), random.randint(0, Grid_Size - 1)]
-CHEATING = True  # Shows you what the computer grid looks like
+CHEATING = False  # Shows you what the computer grid looks like
 DIFFICULTY = "Hard"
 
 
@@ -232,12 +232,42 @@ class Coordinate(object):
 #Handle Ctrl+C
 signal.signal(signal.SIGINT, signal_handler)
 
-#Generate 2 grids
-Player_Grid = [[Coordinate(False, False) for i in range(10)] for j in range(10)]
-Computer_Grid = [[Coordinate(False, False) for i in range(10)] for j in range(10)]
+#Clear screen
+os.system('clear 2>/dev/null')
+
+#Ask user about cheating
+answer = raw_input("Would you like to enable cheats (see the computer's ship)? (Yes/No): ")
+if "y" in answer.lower():
+    CHEATING = True
+    print "Cheats enabled!"
+elif "n" in answer.lower():
+    CHEATING = False
+    print "Cheats disabled!"
+else:
+    print "'%s' is an invalid argument" % answer
+    exit(1)
+
+#Ask user about difficulty
+print
+answer = raw_input("Do you want the computer to be hard, or easy? (Hard/Easy): ")
+if "h" in answer.lower():
+    DIFFICULTY = "Hard"
+    print "Difficulty set to Hard"
+    raw_input("Press enter to continue.")
+elif "e" in answer.lower():
+    DIFFICULTY = "Easy"
+    print "Difficulty set to Easy"
+    raw_input("Press enter to continue.")
+else:
+    print "'%s' is an invalid argument" % answer
+    exit(1)
 
 #Clear screen
 os.system('clear 2>/dev/null')
+
+#Generate 2 grids
+Player_Grid = [[Coordinate(False, False) for i in range(10)] for j in range(10)]
+Computer_Grid = [[Coordinate(False, False) for i in range(10)] for j in range(10)]
 
 for y in reversed(range(0, Grid_Size)):
     for x in range(0, Grid_Size):

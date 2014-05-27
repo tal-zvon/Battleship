@@ -1,9 +1,42 @@
 import random
+import os
 
 __author__ = 'tal'
 Grid_Size = 10
 PC_location = [random.randint(0, Grid_Size - 1), random.randint(0, Grid_Size - 1)]
-CHEATING = False  # Shows you what the computer grid looks like
+CHEATING = True  # Shows you what the computer grid looks like
+
+
+def CheckWin():
+    #Check if player won
+    if (Player_Grid[P1_location[0]][P1_location[1]].already_tried == True and
+                Player_Grid[P1_location[0] + 1][P1_location[1]].already_tried == True and
+                Player_Grid[P1_location[0] + 2][P1_location[1]].already_tried == True and
+                Player_Grid[P1_location[0] + 3][P1_location[1]].already_tried == True):
+        #Show losing message
+        print '\n'
+        print '====================='
+        print '======YOU LOSE!======'
+        print '====================='
+        exit(0)
+
+    #Check if computer won
+    if (Computer_Grid[PC_location[0]][PC_location[1]].already_tried == True and
+                Computer_Grid[PC_location[0] + 1][PC_location[1]].already_tried == True and
+                Computer_Grid[PC_location[0] + 2][PC_location[1]].already_tried == True and
+                Computer_Grid[PC_location[0] + 3][PC_location[1]].already_tried == True):
+        #Clear screen
+        os.system('clear')
+
+        #Draw Grids
+        draw_grids()
+
+        #Show winning message
+        print '\n'
+        print '===================='
+        print '======YOU WIN!======'
+        print '===================='
+        exit(0)
 
 
 def draw_x_axes():
@@ -118,6 +151,9 @@ class Coordinate(object):
 Player_Grid = [[Coordinate(False, False) for i in range(10)] for j in range(10)]
 Computer_Grid = [[Coordinate(False, False) for i in range(10)] for j in range(10)]
 
+#Clear screen
+os.system('clear')
+
 for y in reversed(range(0, Grid_Size)):
     for x in range(0, Grid_Size):
         print "(%d,%d)" % (x, y),
@@ -142,13 +178,35 @@ place_ships()
 #While loop
 while True:
     #Clear screen
+    os.system('clear')
 
     #Draw Grids
     draw_grids()
 
     #Player's turn
+    print '\n'
+    player_shot = raw_input("Where would you like to shoot? (ex: 1,4): ")
+
+    #Convert to int
+    player_shot = convert_to_int(player_shot)
+
+    #Check if input is valid
+    check_input(player_shot)
+
+    #Check if you've already shot there
+    if Computer_Grid[player_shot[0]][player_shot[1]].already_tried:
+        print "\nYou've already tried shooting there!"
+        raw_input("Press enter to continue.")
+        continue
+    else:
+        Computer_Grid[player_shot[0]][player_shot[1]].already_tried = True
+
+    #Check if anyone won
+    CheckWin()
 
     #Computer's turn
 
+    #Check if anyone won
+
     #Temporary break. Remove later
-    break
+    #break

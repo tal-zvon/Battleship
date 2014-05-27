@@ -11,7 +11,7 @@ CHEATING = True  # Shows you what the computer grid looks like
 
 def player_message():
     #Clear screen
-    os.system('clear')
+    os.system('clear 2>/dev/null')
 
     #Draw Grids
     draw_grids()
@@ -41,7 +41,7 @@ def computer_turn():
             Player_Grid[rnd[0]][rnd[1]].already_tried = True
 
             #Clear screen
-            os.system('clear')
+            os.system('clear 2>/dev/null')
 
             #Draw Grids
             draw_grids()
@@ -76,7 +76,7 @@ def check_win():
                 Computer_Grid[PC_location[0] + 2][PC_location[1]].already_tried is True and
                 Computer_Grid[PC_location[0] + 3][PC_location[1]].already_tried is True):
         #Clear screen
-        os.system('clear')
+        os.system('clear 2>/dev/null')
 
         #Draw Grids
         draw_grids()
@@ -207,7 +207,7 @@ Player_Grid = [[Coordinate(False, False) for i in range(10)] for j in range(10)]
 Computer_Grid = [[Coordinate(False, False) for i in range(10)] for j in range(10)]
 
 #Clear screen
-os.system('clear')
+os.system('clear 2>/dev/null')
 
 for y in reversed(range(0, Grid_Size)):
     for x in range(0, Grid_Size):
@@ -237,7 +237,7 @@ place_ships()
 #While loop
 while True:
     #Clear screen
-    os.system('clear')
+    os.system('clear 2>/dev/null')
 
     #Draw Grids
     draw_grids()

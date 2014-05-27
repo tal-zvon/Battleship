@@ -1,10 +1,18 @@
 import random
 import os
+import signal
+import sys
 
 __author__ = 'tal'
 Grid_Size = 10
 PC_location = [random.randint(0, Grid_Size - 1), random.randint(0, Grid_Size - 1)]
 CHEATING = True  # Shows you what the computer grid looks like
+
+
+def signal_handler(signal, frame):
+    print "\n"
+    print "You sank my battleship!"
+    sys.exit(0)
 
 
 def computer_turn():
@@ -156,6 +164,9 @@ class Coordinate(object):
 
         self.ship_here = ship_here
         self.already_tried = already_tried
+
+#Handle Ctrl+C
+signal.signal(signal.SIGINT, signal_handler)
 
 #Generate 2 grids
 Player_Grid = [[Coordinate(False, False) for i in range(10)] for j in range(10)]

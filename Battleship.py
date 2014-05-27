@@ -7,6 +7,16 @@ PC_location = [random.randint(0, Grid_Size - 1), random.randint(0, Grid_Size - 1
 CHEATING = True  # Shows you what the computer grid looks like
 
 
+def computer_turn():
+    while True:
+        rnd = [random.randint(0, Grid_Size - 1), random.randint(0, Grid_Size - 1)]
+
+        #Make sure the computer hasn't shot that spot before
+        if not Player_Grid[rnd[0]][rnd[1]].already_tried:
+            Player_Grid[rnd[0]][rnd[1]].already_tried = True
+            break
+
+
 def check_win():
     #Check if player won
     if (Player_Grid[P1_location[0]][P1_location[1]].already_tried is True and
@@ -205,8 +215,7 @@ while True:
     check_win()
 
     #Computer's turn
+    computer_turn()
 
     #Check if anyone won
-
-    #Temporary break. Remove later
-    #break
+    check_win()

@@ -177,15 +177,15 @@ def check_input(input_coord):
     #Check if list is of proper size:
     if len(input_coord) != 2:
         print 'Improper input detected - too many variables!'
-        exit(1)
+        return False
 
     if input_coord[0] >= Grid_Size:
         print 'Your x coordinate is out of bounds!'
-        exit(1)
+        return False
 
     if input_coord[1] >= Grid_Size:
         print 'Your y coordinate is out of bounds!'
-        exit(1)
+        return False
 
 
 class Coordinate(object):
@@ -225,7 +225,8 @@ if P1_location is False:
     exit(1)
 
 #Check if input is valid
-check_input(P1_location)
+if check_input(P1_location) is False:
+    exit(1)
 
 #Adjust coordinates
 P1_location = adjust_coord(P1_location)
@@ -255,7 +256,9 @@ while True:
         continue
 
     #Check if input is valid
-    check_input(player_shot)
+    if check_input(player_shot) is False:
+        raw_input("Press enter to continue.")
+        continue
 
     #Check if you've already shot there
     if Computer_Grid[player_shot[0]][player_shot[1]].already_tried:
